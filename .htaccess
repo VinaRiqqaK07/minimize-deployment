@@ -1,8 +1,13 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    # Jika request belum mengarah ke /public,
-    # teruskan secara internal ke folder public
+    # Jangan tampilkan /public di URL
+    RewriteCond %{THE_REQUEST} \s/+public/([^\s?]*) [NC]
+    RewriteRule ^public/(.*)$ /$1 [R=301,L]
+
+    # Jangan rewrite ulang request yang sudah menuju public
     RewriteCond %{REQUEST_URI} !^/public/
+
+    # Teruskan seluruh request ke folder public
     RewriteRule ^(.*)$ public/$1 [L]
 </IfModule>

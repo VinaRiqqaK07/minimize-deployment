@@ -117,4 +117,27 @@ function initCountdowns() {
     }, 1000);
 }
 
+// // ==========================================
+// // TOGGLE NAVBAR HAMBURGER (mobile <768px)
+// // ==========================================
+// document.addEventListener('DOMContentLoaded', () => {
+//     const navToggle = document.getElementById('nav-toggle');
+//     const navLinks = document.getElementById('nav-links');
+
+//     if (navToggle && navLinks) {
+//         navToggle.addEventListener('click', () => {
+//             navToggle.classList.toggle('open');
+//             navLinks.classList.toggle('open');
+//         });
+
+//         navLinks.querySelectorAll('a, button').forEach(el => {
+//             el.addEventListener('click', () => {
+//                 navToggle.classList.remove('open');
+//                 navLinks.classList.remove('open');
+//             });
+//         });
+//     }
+// });
+
 document.addEventListener('DOMContentLoaded', initCountdowns);
+

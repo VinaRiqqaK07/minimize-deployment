@@ -12,7 +12,7 @@
     </section>
 
     <script type="text/javascript"
-            src="https://app.sandbox.midtrans.com/snap/snap.js"
+            src="https://app.midtrans.com/snap/snap.js"
             data-client-key="{{ config('midtrans.client_key') }}"></script>
     {{-- Kalau sudah production, ganti src di atas menjadi: https://app.midtrans.com/snap/snap.js --}}
 

@@ -33,8 +33,10 @@
                     <li><a href="{{ route('admin.dashboard') }}" class="nav-link-item">Admin</a></li>
                     <li><a href="{{ route('admin.exhibitions.index') }}" class="nav-link-item">Pameran</a></li>
                     <li><a href="{{ route('admin.merchandise.index') }}" class="nav-link-item">Merch</a></li>
+                    <li><a href="{{ route('admin.users.index') }}" class="nav-link-item">Kelola Admin</a></li>
                     <li><a href="{{ route('admin.audit-logs.index') }}" class="nav-link-item">Audit Log</a></li>
                 @endif
+                <li><a href="{{ route('profile.edit') }}" class="nav-link-item">Profil</a></li>
                 <li><a href="#" id="cart-btn" class="cart-trigger-btn">Keranjang ({{ count(session('cart', [])) }})</a></li>
                 <li>
                     <form method="POST" action="{{ route('logout') }}" style="display:inline;">
@@ -46,7 +48,7 @@
         </ul>
     </nav>
 
-    @if (session('status'))
+    @if (session('status') && session('status') !== 'verification-link-sent')
         <div style="max-width:1400px;margin:20px auto 0;padding:0 50px;">
             <div class="status-flash">{{ session('status') }}</div>
         </div>
@@ -95,6 +97,6 @@
         @endauth
     </div>
 
-    <script src="{{ asset('js/site.js') }}"></script>
+    <script src="{{ asset('js/site.js') }}?v={{ filemtime(public_path('js/site.js')) }}"></script>
 </body>
 </html>

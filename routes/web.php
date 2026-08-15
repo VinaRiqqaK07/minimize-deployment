@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\UserAdminController;
+use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AuditLogAdminController;
 use App\Http\Controllers\Admin\ExhibitionAdminController;
@@ -15,6 +17,9 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
+Route::get('/robots.txt', [SitemapController::class, 'robots'])->name('robots');
 
 // ============ HALAMAN PUBLIK ============
 
@@ -95,12 +100,16 @@ Route::middleware('auth')->group(function () {
         Route::patch('/exhibitions/{exhibition}', [ExhibitionAdminController::class, 'update'])->name('admin.exhibitions.update');
         Route::delete('/exhibitions/{exhibition}', [ExhibitionAdminController::class, 'destroy'])->name('admin.exhibitions.destroy');
 
+        Route::get('/users', [UserAdminController::class, 'index'])->name('admin.users.index');
+        Route::post('/users', [UserAdminController::class, 'store'])->name('admin.users.store');
+        Route::delete('/users/{user}', [UserAdminController::class, 'destroy'])->name('admin.users.destroy');
+
         Route::get('/audit-logs', [AuditLogAdminController::class, 'index'])->name('admin.audit-logs.index');
     });
 });
 
 // ============ WEBHOOK PEMBAYARAN ============
 
-Route::post('/payment/notification', [OrderController::class, 'notification'])->name('payment.notification');
+Route::post('/https://minimize-exhibition.art/payment/notification', [OrderController::class, 'notification'])->name('payment.notification');
 
 require __DIR__.'/auth.php';

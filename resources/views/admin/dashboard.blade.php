@@ -28,10 +28,48 @@
                             @csrf
                             <button class="nav-btn" style="border-color:#FF5555; color:#FF5555; padding:8px 16px; font-size:0.75rem;">Tolak</button>
                         </form>
+                        <form method="POST" action="{{ route('admin.artworks.destroy', $artwork) }}" onsubmit="return confirm('Hapus PERMANEN karya ini beserta gambarnya? Tindakan ini tidak bisa dibatalkan.')">
+                            @csrf @method('DELETE')
+                            <button class="nav-btn" style="border-color:#666; color:#666; padding:8px 16px; font-size:0.75rem;">Hapus</button>
+                        </form>
                     </div>
                 </div>
             @empty
                 <p style="color:#666;">Tidak ada karya yang menunggu verifikasi.</p>
+            @endforelse
+        </div>
+
+        <h3 style="margin-bottom:20px; color:#999; text-transform:uppercase; font-size:0.85rem; letter-spacing:1px;">Kelola Semua Karya</h3>
+        <div style="display:flex; flex-direction:column; gap:12px; margin-bottom:60px;">
+            @forelse ($allArtworks as $artwork)
+                <div style="display:flex; justify-content:space-between; align-items:center; padding:16px 20px; background:rgba(13,16,23,0.85); border:1px solid rgba(255,255,255,0.05);">
+                    <div style="display:flex; align-items:center; gap:15px;">
+                        <div style="width:50px;height:50px;background:#111;overflow:hidden;">
+                            @if ($artwork->image_path)
+                                <img src="{{ Storage::url($artwork->image_path) }}" style="width:100%;height:100%;object-fit:cover;">
+                            @endif
+                        </div>
+                        <div>
+                            <p style="font-weight:600; font-size:0.9rem;">{{ $artwork->title }}</p>
+                            <p style="font-size:0.8rem; color:#777;">
+                                oleh {{ $artwork->artist->name }} —
+                                <span style="color: {{ match($artwork->status) { 'approved' => '#55FF55', 'rejected' => '#FF5555', 'sold' => '#FFF200', default => '#777' } }};">
+                                    {{ $artwork->status }}
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                    @if ($artwork->status !== 'sold')
+                        <form method="POST" action="{{ route('admin.artworks.destroy', $artwork) }}" onsubmit="return confirm('Hapus PERMANEN karya ini beserta gambarnya? Tindakan ini tidak bisa dibatalkan.')">
+                            @csrf @method('DELETE')
+                            <button type="submit" style="background:none;border:none;color:#FF5555;cursor:pointer;font-size:0.8rem;">Hapus</button>
+                        </form>
+                    @else
+                        <span style="font-size:0.75rem; color:#444;">Sudah terjual — tidak bisa dihapus</span>
+                    @endif
+                </div>
+            @empty
+                <p style="color:#666;">Belum ada karya lain di luar yang pending.</p>
             @endforelse
         </div>
 

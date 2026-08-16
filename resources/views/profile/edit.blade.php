@@ -16,17 +16,17 @@
 
                 <div class="form-group">
                     <label>Nama</label>
-                    <input type="text" name="name" value="{{ old('name', $request->user()->name) }}" required autofocus>
+                    <input type="text" name="name" value="{{ old('name', $user->name) }}" required autofocus>
                     @error('name') <p class="form-error">{{ $message }}</p> @enderror
                 </div>
 
                 <div class="form-group">
                     <label>Email</label>
-                    <input type="email" name="email" value="{{ old('email', $request->user()->email) }}" required>
+                    <input type="email" name="email" value="{{ old('email', $user->email) }}" required>
                     @error('email') <p class="form-error">{{ $message }}</p> @enderror
                 </div>
 
-                @if ($request->user() instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $request->user()->hasVerifiedEmail())
+                @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
                     <p style="font-size:0.8rem; color:#FFF200; margin-bottom:15px;">
                         Emailmu belum diverifikasi.
                         <button form="send-verification" style="background:none;border:none;color:#FFF200;text-decoration:underline;cursor:pointer;padding:0;">

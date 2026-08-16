@@ -12,9 +12,9 @@
     </section>
 
     <script type="text/javascript"
-            src="https://app.midtrans.com/snap/snap.js"
+            src="{{ config('midtrans.is_production') ? 'https://app.midtrans.com/snap/snap.js' : 'https://app.sandbox.midtrans.com/snap/snap.js' }}"
             data-client-key="{{ config('midtrans.client_key') }}"></script>
-    {{-- Kalau sudah production, ganti src di atas menjadi: https://app.midtrans.com/snap/snap.js --}}
+    {{-- Otomatis ikut MIDTRANS_IS_PRODUCTION di .env: false = sandbox, true = production. Tidak perlu edit manual lagi. --}}
 
     <script type="text/javascript">
         document.getElementById('pay-button').addEventListener('click', function () {

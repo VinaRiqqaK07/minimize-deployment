@@ -14,7 +14,12 @@
                 <img src="{{ asset('images/IMG_5824.png') }}" alt="MINI MIZE EXT.4 Logo" class="nav-logo">
             </a>
         </div>
-        <ul class="nav-links">
+
+        <button type="button" id="nav-toggle" class="nav-toggle" aria-label="Buka menu" aria-controls="nav-links" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+
+        <ul class="nav-links" id="nav-links">
             <li><a href="{{ route('catalog.index') }}" class="nav-link-item">Pameran</a></li>
             <li><a href="{{ route('home') }}#merchandise" class="nav-link-item">Merchandise</a></li>
             <li><a href="{{ route('buyers.index') }}" class="nav-link-item">Kolektor</a></li>

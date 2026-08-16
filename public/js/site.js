@@ -117,27 +117,29 @@ function initCountdowns() {
     }, 1000);
 }
 
-// // ==========================================
-// // TOGGLE NAVBAR HAMBURGER (mobile <768px)
-// // ==========================================
-// document.addEventListener('DOMContentLoaded', () => {
-//     const navToggle = document.getElementById('nav-toggle');
-//     const navLinks = document.getElementById('nav-links');
+// ==========================================
+// TOGGLE NAVBAR HAMBURGER (mobile <900px)
+// ==========================================
+document.addEventListener('DOMContentLoaded', () => {
+    const navToggle = document.getElementById('nav-toggle');
+    const navLinks = document.getElementById('nav-links');
 
-//     if (navToggle && navLinks) {
-//         navToggle.addEventListener('click', () => {
-//             navToggle.classList.toggle('open');
-//             navLinks.classList.toggle('open');
-//         });
+    if (navToggle && navLinks) {
+        navToggle.addEventListener('click', () => {
+            const isOpen = navToggle.classList.toggle('open');
+            navLinks.classList.toggle('open');
+            navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
 
-//         navLinks.querySelectorAll('a, button').forEach(el => {
-//             el.addEventListener('click', () => {
-//                 navToggle.classList.remove('open');
-//                 navLinks.classList.remove('open');
-//             });
-//         });
-//     }
-// });
+        navLinks.querySelectorAll('a, button').forEach(el => {
+            el.addEventListener('click', () => {
+                navToggle.classList.remove('open');
+                navLinks.classList.remove('open');
+                navToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+    }
+});
 
 document.addEventListener('DOMContentLoaded', initCountdowns);
 

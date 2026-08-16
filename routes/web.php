@@ -89,7 +89,6 @@ Route::middleware('auth')->group(function () {
         Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');
         Route::post('/artworks/{artwork}/approve', [AdminController::class, 'approveArtwork'])->name('admin.artworks.approve');
         Route::post('/artworks/{artwork}/reject', [AdminController::class, 'rejectArtwork'])->name('admin.artworks.reject');
-        Route::delete('/artworks/{artwork}', [AdminController::class, 'destroyArtwork'])->name('admin.artworks.destroy');
 
         Route::get('/merchandise', [MerchandiseAdminController::class, 'index'])->name('admin.merchandise.index');
         Route::post('/merchandise', [MerchandiseAdminController::class, 'store'])->name('admin.merchandise.store');
@@ -111,6 +110,6 @@ Route::middleware('auth')->group(function () {
 
 // ============ WEBHOOK PEMBAYARAN ============
 
-Route::post('/payment/notification', [OrderController::class, 'notification'])->name('payment.notification');
+Route::post('/https://minimize-exhibition.art/payment/notification', [OrderController::class, 'notification'])->name('payment.notification');
 
 require __DIR__.'/auth.php';

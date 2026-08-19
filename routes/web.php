@@ -89,6 +89,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');
         Route::post('/artworks/{artwork}/approve', [AdminController::class, 'approveArtwork'])->name('admin.artworks.approve');
         Route::post('/artworks/{artwork}/reject', [AdminController::class, 'rejectArtwork'])->name('admin.artworks.reject');
+        Route::delete('/artwork/{artwork}/destroy', [AdminController::class, 'destroyArtwork'])->name('admin.artworks.destroy');
 
         Route::get('/merchandise', [MerchandiseAdminController::class, 'index'])->name('admin.merchandise.index');
         Route::post('/merchandise', [MerchandiseAdminController::class, 'store'])->name('admin.merchandise.store');
